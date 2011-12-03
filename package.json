@@ -1,0 +1,21 @@
+{
+    "author":"Bolgov Roman <bolgovr@gmail.com> (https://twitter.com/#!/rbolgov)",
+    "name":"flow-control",
+    "description":"Application level flow-control library",
+    "version":"0.0.0",
+    "homepage":"https://github.com/bolgovr/node-flow-control",
+    "repository":{
+        "type":"git",
+        "url":"git://github.com/bolgovr/node-flow-control.git"
+    },
+    "main":"index.js",
+    "engines":{
+        "node":"~0.6.4"
+    },
+    "dependencies":{
+        "async":"*",
+        "underscore":"*",
+        "vows":"*"
+    },
+    "devDependencies":{}
+}
