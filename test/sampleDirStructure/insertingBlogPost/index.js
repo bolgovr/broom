@@ -1,7 +1,9 @@
-/**
- * Created by JetBrains PhpStorm.
- * User: bolgovroman
- * Date: 12/4/11
- * Time: 12:10 AM
- * To change this template use File | Settings | File Templates.
- */
+var insertBlogPost = function(){
+    this.name='insertBlogPost';
+    this.deps=['start','userAuthorization'];
+    this.onStart = this.entryPoint.bind(this);
+};
+insertBlogPost.prototype.entryPoint = function(callback,data){
+    callback(null,{'title':'blog post inserted'});
+};
+module.exports = insertBlogPost;
