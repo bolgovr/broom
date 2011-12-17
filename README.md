@@ -17,7 +17,7 @@ How can I use it?
 * Declare module dependencies.
 * Run broom
 
-
+Example:
 
 	var Broom = require('broom');
 
@@ -39,9 +39,9 @@ How can I use it?
 
 
 broom.run method expect:
-* modules namespace name
-* first function(to put in closure variables)
-* last function which called when all done or any error occured(execution model build on top of async.auto)
+* Modules namespace name.
+* First function(to put in closure variables).
+* Last function which called when all done or any error occured(execution model build on top of async.auto).
 
 Example with express:
 
