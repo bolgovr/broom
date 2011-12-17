@@ -39,7 +39,8 @@ Example:
 
 
 broom.run method expect:
-* Modules namespace name.
+
+* Declared namespace.
 * First function(to put in closure variables).
 * Last function which called when all done or any error occured(execution model build on top of async.auto).
 
@@ -64,7 +65,34 @@ Example with express:
    	 }
 	});
 
+
+
+Module example
+
+        var UserAuth = function () {
+            this.name = 'userAuthorization'; //name of the module
+            this.deps = ['start']; //dependency declaration
+            this.onStart = this.entryPoint.bind(this); //module start point
+        };
+        UserAuth.prototype.entryPoint = function (callback, data) { //method will be called when "start" function is done
+            var typicalUser = {
+                'login':'r00t',
+                'password':'12345'
+            };
+            var user = data.start.user || null;
+            if (user && user.password == typicalUser.password && user.login == typicalUser.login) {
+                callback(null, true);
+            } else {
+                callback(new Error('I dont know you'));
+            }
+        };
+
+
+        module.exports = UserAuth;
+
 For more check out example.js and test folder
+
+
 
 Tests
 =======
