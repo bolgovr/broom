@@ -16,7 +16,7 @@ How can I use it?
 *Name it.
 *declare module dependencies.
 *run broom
-```JavaScript
+
 var Broom = require('broom');
 
 var flow = new Broom();
@@ -33,7 +33,7 @@ flow.registerPath('global', './dirWithModules', function () {
     }, function (err, data) {
         console.log(arguments);
     });
-});```
+});
 
 
 broom.run method expect
@@ -42,7 +42,6 @@ broom.run method expect
 *last function which called when all done or any error occured(execution model build on top of async.auto)
 
 Example with express:
-```JavaScript
 
 var Broom = require('broom');
 var app = require('express').createServer();
@@ -65,9 +64,6 @@ app.get('/path/:var1/var2', function (req, res) {
         res.end(data.renderHTML); //if you have module with name renderHTML and it passes rendered template in callback
     }
 });
-
-```
-
 For more check out example.js and test folder
 
 Tests
