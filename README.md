@@ -1,7 +1,7 @@
 Why?
 =======
 
-To prevent node.js devs from applications with over 9k LOC in one file.
+To prevent node.js devs from making applications with over 9k LOC in one file.
 
 Installation
 =======
@@ -11,11 +11,13 @@ Installation
 How can I use it?
 =======
 
-*Split your code into small pieces with single responsibility
-*From each piece of code make module.
-*Name it.
-*declare module dependencies.
-*run broom
+* Split your code into small pieces with single responsibility.
+* From each piece of code make module.
+* Name it.
+* Declare module dependencies.
+* Run broom
+
+
 
 	var Broom = require('broom');
 
@@ -36,10 +38,10 @@ How can I use it?
         });
 
 
-broom.run method expect
-*modules namespace name
-*first function(to put in closure variables)
-*last function which called when all done or any error occured(execution model build on top of async.auto)
+broom.run method expect:
+* modules namespace name
+* first function(to put in closure variables)
+* last function which called when all done or any error occured(execution model build on top of async.auto)
 
 Example with express:
 
@@ -53,10 +55,10 @@ Example with express:
 
 	app.get('/path/:var1/var2', function (req, res) {
   	  flow.run('global', function (callback) {
-   	     callback(null, {'req':req}); //any module can access to req params throgh 	data.start.req
+   	     callback(null, {'req':req}); //any module can access to req params through data.start.req
      }, function (err, data) {
    	 if (err) {
-      	  res.end('error'); //if any error occured - that function will be called immidiately
+      	  res.end('error'); //if any error occured - that function will be called immediately
   	  } else {
      	   res.end(data.renderHTML); //if you have module with name renderHTML and it passes rendered template in callback
    	 }
