@@ -24,10 +24,10 @@ How can I use it?
 	flow.setRoot(__dirname);
 
 	flow.registerPath('global', './dirWithModules', function () {
-  	  var user = {
-   	     'login':'r00t',
-    	    'password':'12345'
-   	 };
+            var user = {
+                 'login':'r00t',
+                    'password':'12345'
+             };
     		flow.run('global', function (callback) {
     	 	   callback(null, {'user':user});
     		}, function (err, data) {
@@ -54,10 +54,7 @@ Example with express:
 	app.get('/path/:var1/var2', function (req, res) {
   	  flow.run('global', function (callback) {
    	     callback(null, {'req':req}); //any module can access to req params throgh 	data.start.req
-   	 });
-
-
-	}, function (err, data) {
+     }, function (err, data) {
    	 if (err) {
       	  res.end('error'); //if any error occured - that function will be called immidiately
   	  } else {
