@@ -2,7 +2,7 @@
     "author":"Bolgov Roman <bolgovr@gmail.com> (https://twitter.com/#!/rbolgov)",
     "name":"broom",
     "description":"Application level flow-control library",
-    "version":"0.0.1",
+    "version":"0.0.2",
     "homepage":"https://github.com/bolgovr/node-flow-control",
     "repository":{
         "type":"git",
@@ -12,7 +12,7 @@
     "engines":{
         "node":"~0.6.4"
     },
-    "keywords":["control","flow","application"],
+    "keywords":["control", "flow", "application"],
     "dependencies":{
         "async":"*",
         "underscore":"*",
