@@ -16,6 +16,4 @@ UserAuth.prototype.entryPoint = function (callback, data) {
     }
 };
 
-
 module.exports = UserAuth;
-
