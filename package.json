@@ -1,0 +1,22 @@
+{
+    "author":"Bolgov Roman <bolgovr@gmail.com> (https://twitter.com/#!/rbolgov)",
+    "name":"broom",
+    "description":"Application level flow-control library",
+    "version":"0.0.3",
+    "homepage":"https://github.com/bolgovr/broom",
+    "repository":{
+        "type":"git",
+        "url":"git://github.com/bolgovr/broom.git"
+    },
+    "main":"index.js",
+    "engines":{
+        "node":"~0.6.4"
+    },
+    "keywords":["control", "flow", "application"],
+    "dependencies":{
+        "async":"*",
+        "underscore":"*",
+        "mocha":"*"
+    },
+    "devDependencies":{}
+}
