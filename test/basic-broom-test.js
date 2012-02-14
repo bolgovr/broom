@@ -62,3 +62,17 @@ describe("#basic",function(){
 
 });
 
+describe('#wrong root dir',function(){
+  it("should return error",function(done){
+    handler.setRootPath(__dirname);
+      assert.ok(err instanceof Error);
+    });
+  it("should not return error",function(done){
+    var handler = new Broom();
+    handler.setRootPath(__dirname);
+    handler.scan('./',function(err,result){
+      assert.equal(false, err instanceof Error);
+      done();
+    });
+  });
+});
