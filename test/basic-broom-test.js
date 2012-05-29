@@ -1,78 +1,48 @@
 var Broom = require('../lib/broom.js').broom;
 var assert = require('assert');
-describe("#basic",function(){
+describe("#basic", function () {
   var handler;
-  beforeEach(function(done){
-    handler = new Broom();
-    handler.setRootPath(__dirname); 
+  beforeEach(function (done) {
+    handler = new Broom({
+      'fileName': 'index.js',
+      'dependenciesName': 'deps',
+      'entryName': 'onStart'
+    });
+    handler.setRootPath(__dirname);
+    handler.scan('./fixtures/modulesRoot', done);
+  });
+
+  it('it should contain directory structure', function (done) {
+    assert.ok(handler.flowTree['/blogActions']);
+    assert.ok(handler.flowTree['/getUser']);
+    assert.ok(handler.flowTree['/saveUser']);
+    assert.ok(handler.flowTree['/blogActions/setPageView']);
+    assert.ok(handler.flowTree['/blogActions/sendStats']);
     done();
   });
-
-  it('it should contain empty structure',function(done){
-    assert.deepEqual(handler.tree,{});
-    done();
-
-  });
-
-  it('should has current directory as root',function(done){
-    assert.equal(handler.path,__dirname);
-    done(); 
-  });
-
-  describe('#scanning tree',function(){
-    beforeEach(function(done){
-      handler.scan('./sampleDir',done);    
-    });
-
-    it('should contain all top level directories as root modules ',function(done){
-      assert.ok(handler.flowTree['/firstRootDir']);
-      assert.ok(handler.flowTree['/secondRootDir']);
-      assert.ok(handler.flowTree['/thirdRootDir']);
+  it('it should run and return results to a final callback', function (done) {
+    var rootArg = {'test': 1};
+    handler.setRootArgs(rootArg);
+    handler.run(function (err, results) {
+      assert.equal(err, null);
+      assert.equal(results['/blogActions'].statsSended, true);
+      assert.equal(rootArg.test, 2);
       done();
-
     });
-    it('should be able set start function args',function(done){
-      handler.setRootArgs({'request':1});
-      assert.ok(handler.flowTree['/']); 
-      done();
-    }); 
-    describe('#running',function(){
-      beforeEach(function(done){
-        handler.setRootArgs({'request':1}); 
-        done();
-      });
-      it('should call callback function when all done',function(done){
-        handler.run(done);      
-      });
-      it('should pass in last callback correct args',function(done){
-        handler.run(function(err,args){
-          assert.equal(err,null);
-          assert.equal(args['/secondRootDir'],true);
-          assert.equal(args['/'].request,1);
-          assert.equal(args['/thirdRootDir'],true);
-          assert.equal(args['/secondRootDir/secondSubDir'],true);
-          done();
+  });
+  it('should handle concurrent requests without messing agruments', function (done) {
+    for (var i = 0; i < 10; i++) {
+      (function (arg) {
+        var rootArg = {'test': arg, 'random': Math.random()};
+        handler.setRootArgs(rootArg);
+        handler.run(function (err, results) {
+          assert.equal(rootArg.test, arg + 1);
+          assert.equal(results['/'].random, rootArg.random);
+          if (arg === 9) {
+            done();
+          }
         });
-
-
-      });
-
-    }); 
-  });
-
-});
-
-describe('#wrong root dir',function(){
-  it("should return error",function(done){
-    handler.setRootPath(__dirname);
-      assert.ok(err instanceof Error);
-    });
-  it("should not return error",function(done){
-    var handler = new Broom();
-    handler.setRootPath(__dirname);
-    handler.scan('./',function(err,result){
-      assert.equal(false, err instanceof Error);
-      done();
-    });
+      }(i));
+    }
   });
 });
