@@ -9,14 +9,16 @@ to each module dependencies. Broom will handle parallel and sequental execution 
 #How can I use it?
 
 assume we have directory structure like this:
-  app
-  -modules
-   -first
-    -index.js
-   -second
-    -index.js
-   -third
-    -index.js
+
+ * app
+  * modules
+   * first
+    * index.js
+   * second
+    * index.js
+   * third
+    * index.js
+
 *yourapp.js*
 ```javascript
   var Broom = require('broom').broom;
