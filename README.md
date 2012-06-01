@@ -1,6 +1,6 @@
 #Why?
-This is yet another try to solve callback hell and 500+ LOC files. Split your codebase into small easy-to-test and maintain modules and feed it to broom. It will run your code according
-to each module dependencies. Broom will handle parallel and sequental execution of your modules where is needed.
+This is yet another try to solve callback hell and 500+ LOC files. Split your codebase into small easy to test and maintain modules and feed it to broom. It will run your code according
+to each module dependencies. Broom will handle parallel and sequental execution of your modules where it needed.
 
 #How can I install it?
 
@@ -26,6 +26,7 @@ assume we have directory structure like this:
     'entryName': 'onStart' //What function Broom should run
   });
   flow.setRootPath(__dirname); //pointing to modules root directory
+
   flow.scan('./app/modules', function (err, done) { //path is relative to rootPath
     if (!done) {
       console.error('broom scan dirs completed with errors');
@@ -52,7 +53,54 @@ assume we have directory structure like this:
 
 *first/index.js*
 ```javascript
-
+var MyFirstModule = function () {
+  this.deps = {
+    'main': '/',
+    'sec': '/second',
+    'third': '/third'
+  };
+  this.onStart = this.entryPoint.bind(this);
+};
+MyFirstModule.prototype.entryPoint = function (callback, data) {
+  //here you can access results of second/index.js with data.sec
+  callback(null, {});
+};
+module.exports = MyFirstModule;
+```
+*second/index.js*
+```javascript
+var MySecondModule = function () {
+  this.deps = {
+    'main': '/'
+  };
+  this.onStart = this.entryPoint.bind(this);
+};
+MySecondModule.prototype.entryPoint = function (callback, data) {
+  //here you can access root args with data.main
+  callback(null, {});
+};
+module.exports = MySecondModule;
 ```
 
+*third/index.js*
+```javascript
+var MyThirdModule = function () {
+  this.deps = {
+    'main': '/'
+  };
+  this.onStart = this.entryPoint.bind(this);
+};
+MyThirdModule.prototype.entryPoint = function (callback, data) {
+  //here you can access root args with data.main
+  callback(null, {});
+};
+module.exports = MyThirdModule;
+```
+
+Modules *second* and *third* will execute in parallel, and than *first* module will executed with results of *second* and *third* modules.
+
+
+
+#Licence
+MIT
 
