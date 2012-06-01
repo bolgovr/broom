@@ -14,10 +14,10 @@ assume we have directory structure like this:
     * modules
         * first
             * index.js
-   * second
-    * index.js
-   * third
-    * index.js
+        * second
+            * index.js
+        * third
+            * index.js
 
 *yourapp.js*
 ```javascript
