@@ -1,5 +1,5 @@
 #Why?
-This is yet another try to solve callback hell and 500+ LOC files. Split your codebase into small easy to test and maintain modules and feed it to broom. It will run your code according
+This is yet another try to solve callback hell and 500+ LOC files. Split your codebase into small easy to test and maintain modules and feed it to Broom. It will run your code according
 to each module dependencies. Broom will handle parallel and sequental execution of your modules where it needed.
 
 #How can I install it?
@@ -8,7 +8,7 @@ to each module dependencies. Broom will handle parallel and sequental execution 
 
 #How can I use it?
 
-assume we have directory structure like this:
+assume you have directory structure like this:
 
  * app
     * modules
@@ -23,7 +23,7 @@ assume we have directory structure like this:
 ```javascript
   var Broom = require('broom').broom;
   var flow = new Broom({
-    'fileName': 'index.js', //Broom will hunt for only for modules with this name, so you can put any files in brooms module directory.
+    'fileName': 'index.js', //Broom will hunt for only for files with this name, so you can put any other files in brooms module directory.
     'dependenciesName': 'deps', //Broom will check this property for module dependencies
     'entryName': 'onStart' //What function Broom should run
   });
@@ -38,7 +38,7 @@ assume we have directory structure like this:
   });
 
   //then set root arguments, you can reach them with {'main': '/'} in deps property of your modules
-  flow.setRootArgs({'request': request, 'models': models});
+  flow.setRootArgs({'request': request, 'models': models}); //assume that we handling http request
 
   //run it
   flow.run(function (err, data) {
