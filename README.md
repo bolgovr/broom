@@ -11,9 +11,9 @@ to each module dependencies. Broom will handle parallel and sequental execution 
 assume we have directory structure like this:
 
  * app
-  * modules
-   * first
-    * index.js
+    * modules
+        * first
+            * index.js
    * second
     * index.js
    * third
