@@ -97,8 +97,13 @@ MyThirdModule.prototype.entryPoint = function (callback, data) {
 module.exports = MyThirdModule;
 ```
 
-Modules *second* and *third* will execute in parallel, and than *first* module will executed with results of *second* and *third* modules.
+Modules *second* and *third* will execute in parallel, and than *first* module will executed with results of *second* and *third* modules, after that final callback will be called with all results.
 
+If any module pass error as it first parameter - Broom will stop and call final callback(passed to *run* function) with error
+
+#catching errors
+
+Broom also can validate all dependencies in execution tree, just call Broom.testTree method and it will output to console all unresolved, circular dependencies and if module depends on itself situations.
 
 
 #Licence
