@@ -105,7 +105,7 @@ If any module pass error as it first parameter - Broom will stop and call final 
 
 #catching errors
 
-Broom also can validate all dependencies in execution tree, just call Broom.testTree method and it will output to console all unresolved, circular dependencies and if module depends on itself situations.
+Broom also can validate all dependencies in execution tree, just call Broom.testTree method and it will output to console all unresolved, circular dependencies and when module depends on itself situations.
 
 
 #Licence
