@@ -117,7 +117,7 @@ validate all dependencies in execution tree, it will output to console all unres
 if set to `true`, Broom will look for functions that executes more than Broom.timeLimit mseconds and output into console it's name and arguments.
 
 ###Broom.timeLimit
-max function executing time in milliseconds.
+max execution time in milliseconds for single function.
 
 
 #Licence
