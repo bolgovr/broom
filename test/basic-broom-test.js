@@ -46,3 +46,13 @@ describe("#basic", function () {
     }
   });
 });
+describe('#scanning', function () {
+  it("should not return error", function (done) {
+    var handler = new Broom();
+    handler.setRootPath(__dirname);
+    handler.scan('./fixtures/modulesRoot', function (err, result) {
+      assert.equal(false, err instanceof Error);
+      done();
+    });
+  });
+});
