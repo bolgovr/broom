@@ -1,7 +1,7 @@
 #Why?
 This is yet another try to solve callback hell and 500+ LOC files. Split your codebase into small easy to test and maintain modules and feed it to Broom. It will run your code according
 to each module dependencies. Broom will handle parallel and sequental execution of your modules where it needed.
-
+[![Build Status](https://secure.travis-ci.org/bolgovr/broom.png)](http://travis-ci.org/bolgovr/broom)
 #How can I install it?
 
 `npm install broom`
