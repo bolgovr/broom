@@ -79,7 +79,12 @@ var MySecondModule = function () {
 };
 MySecondModule.prototype.entryPoint = function (callback, data) {
   //here you can access root args with data.main
-  callback(null, {});
+
+  setTimeout(function () { //all dependent modules will run only when you call callback with results
+    callback(null, {});
+  }, 1000);
+
+
 };
 module.exports = MySecondModule;
 ```
@@ -103,9 +108,16 @@ Modules *second* and *third* will execute in parallel, and than *first* module w
 
 If any module pass error as it first parameter - Broom will stop and call final callback(passed to *run* function) with error
 
-#catching errors
+#catching errors API
 
-Broom also can validate all dependencies in execution tree, just call Broom.testTree method and it will output to console all unresolved, circular dependencies and when module depends on itself situations.
+###Broom.testTree()
+validate all dependencies in execution tree, it will output to console all unresolved, circular dependencies and when module depends on itself situations.
+
+###Broom.debug
+if set to `true`, Broom will look for functions that executes more than Broom.timeLimit mseconds and output into console it's name and arguments.
+
+###Broom.timeLimit
+max function executing time in milliseconds.
 
 
 #Licence
