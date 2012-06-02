@@ -2,7 +2,7 @@
     "author":"Bolgov Roman <bolgovr@gmail.com> (https://twitter.com/#!/rbolgov)",
     "name":"broom",
     "description":"Application level flow-control library",
-    "version":"0.0.6",
+    "version":"0.0.7",
     "homepage":"https://github.com/bolgovr/broom",
     "repository":{
         "type":"git",
