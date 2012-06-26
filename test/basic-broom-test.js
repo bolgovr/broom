@@ -23,8 +23,7 @@ describe("#basic", function () {
   it('it should run and return results to a final callback', function (done) {
     var rootArg = {'test': 1};
     handler.setRootArgs(rootArg);
-    handler.run(function (err, results) {
-      assert.equal(err, null);
+    handler.run(function (results) {
       assert.equal(results['/blogActions'].statsSended, true);
       assert.equal(rootArg.test, 2);
       done();
@@ -35,7 +34,7 @@ describe("#basic", function () {
       (function (arg) {
         var rootArg = {'test': arg, 'random': Math.random()};
         handler.setRootArgs(rootArg);
-        handler.run(function (err, results) {
+        handler.run(function (results) {
           assert.equal(rootArg.test, arg + 1);
           assert.equal(results['/'].random, rootArg.random);
           if (arg === 9) {
