@@ -110,6 +110,23 @@ If any module pass error as it first parameter - Broom will stop and call final 
 
 #catching errors API
 
+###Broom.on('error', fn)
+since 0.1.0 version Broom is [domain](http://nodejs.org/api/domain.html) instance, also every ```Broom.run```
+call will return new domain instance. If any module passes error as it first parameter to callback or throw
+it  - domain will intercept it error.
+
+```javascript
+ var flow = new Broom();
+ flow.on('error', fn) //catch every error
+```
+```javascript
+  var flow = new Broom();
+  //etc
+  var d = flow.run(function (data) {});
+  d.on('error', fn) //related to this flow errors
+  d.dispose();
+```
+
 ###Broom.testTree()
 validate all dependencies in execution tree, it will output to console all unresolved, circular dependencies and when module depends on itself situations.
 
