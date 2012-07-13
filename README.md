@@ -134,8 +134,23 @@ validate all dependencies in execution tree, it will output to console all unres
 
 ###Broom.debug
 if set to `true`, Broom will look for functions that executes more than Broom.timeLimit mseconds and output into console it's name and arguments.
+####Broom.beforeEach
+Array with functions that called before every module, all that function returns will passed to `Broom.afterEach` functions
+####Broom.afterEach
+Array with functions that called after every module with results that returned from beforeEach functions.
+####beforeEach and afterEach example
 
-###Broom.timeLimit
+```javascript
+  var flow = new Broom();
+  flow.debug = true;
+  flow.beforeEach.push(function (pathToModule, moduleArguments) {
+    return Date.now();
+  });
+  flow.afterEach.push(function (pathToModule, beforeEachArgs) {
+    console.log(pathToModule + ' executes ' + (Date.now() - beforeEachArgs[0]) + ' ms');
+  });
+```
+####Broom.timeLimit
 max execution time in milliseconds for single function.
 
 
