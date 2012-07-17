@@ -25,7 +25,7 @@ describe("#debug features", function () {
       assert.equal(results[0].time, date);
     });
     handler.setRootArgs(rootArg);
-    handler.run(function (results) {
+    handler.run(function (err, results) {
       assert.equal(afterEachCalled, true);
       assert.equal(results['/blogActions'].statsSended, true);
       assert.equal(rootArg.test, 2);
