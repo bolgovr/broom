@@ -110,6 +110,10 @@ Modules *second* and *third* will execute in parallel, and than *first* module w
 
 If any module pass error as it first parameter - Broom will stop and call final callback(passed to *run* function) with error
 
+##Common tasks and code reusing
+Common tasks like validating user etc. can be extracted to standalone broom module and augment any flow with `mainFlow.extend(secondaryFlow);`.
+Do not forget to run Broom.testTree after augmentation.
+
 #catching errors API
 
 ###Broom.testTree()
